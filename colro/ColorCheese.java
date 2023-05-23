@@ -6,11 +6,6 @@ import java.awt.datatransfer.Clipboard;
 import javax.swing.*;
 
 public class ColorCheese extends JFrame {
-    public static boolean start = true;
-
-    private static final Object monitor = new Object();
-    private static boolean monitorState = false;
-
     private JButton change = new JButton("Change Color");
     private JButton copyHex = new JButton("Copy");
     private JButton copyRGB = new JButton("Copy");
@@ -25,29 +20,9 @@ public class ColorCheese extends JFrame {
     private JLabel hexNorm = new JLabel("");
     private JLabel hexComp = new JLabel("");
 
-    public static int[] colorPickArray = new int[3];
-
     private int r = (int)(Math.random() *255)+1;
     private int g = (int)(Math.random() *255)+1;
     private int b = (int)(Math.random() *255)+1;
-
-    public static void waitForThread() {
-        monitorState = true;
-        while (monitorState) {
-          synchronized (monitor) {
-            try {
-              monitor.wait(); // wait until notified
-            } catch (Exception e) {}
-          }
-        }
-      }
-
-    public static void unlockWaiter() {
-        synchronized (monitor) {
-            monitorState = false;
-            monitor.notifyAll(); // unlock again
-        }
-    }
 
     private String switchCase(int input) {
         String output = "";
@@ -138,19 +113,11 @@ public class ColorCheese extends JFrame {
         
     }
 
-    public int[] getRGBVals() {
-        return new int[]{r, g, b};
-    }
-
     public void setRGBVals(int red, int green, int blue) {
         r = red;
         g = green;
         b = blue;
         setColor();
-    }
-
-    public static void sleep(int i) throws InterruptedException {
-        Thread.sleep(i);
     }
 
     private void setColor() { 
@@ -279,18 +246,7 @@ public class ColorCheese extends JFrame {
         });
 
         colorPick.addActionListener(e -> {
-            // ColorPickerCheese test = new ColorPickerCheese(this);
-            // ColorThreadCheese t = new ColorThreadCheese(this);
-            // t.start();
-
-            // try {
-            //     sleep(30000);
-            // } catch (InterruptedException e1) {
-            //     System.out.println("funny err");
-            // }
             setRGB();
-
-            // setColor();
         });
     }
 
