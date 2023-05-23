@@ -62,8 +62,8 @@ class TimeTest {
         Point currLocation = f.getLocationOnScreen();
         
         for (int i = 0; i < 1500; i++) {
-            int xRand = (int) (Math.random() * 1) + 1;
-            int yRand = (int) (Math.random() * 1000) + 1;
+            int xRand = (int) (Math.random() * 100) + 1;
+            int yRand = (int) (Math.random() * 100) + 1;
             Point pos1 = new Point(currLocation.x + xRand, currLocation.y + yRand);
             Point pos2 = new Point(currLocation.x - xRand, currLocation.y - yRand);
             f.setLocation(pos1);
