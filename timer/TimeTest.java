@@ -24,7 +24,6 @@ class TimeTest {
 
     public static void timer(JLabel timeMin, JLabel timeSec, JSpinner spinSec, JSpinner spinMin, JFrame frame) throws InterruptedException{
         while (true) {
-            System.out.println("hi");
             if (startReset) {
                 // Thread.sleep(1000);
                 long elapsedTime = System.currentTimeMillis() - startTime;
